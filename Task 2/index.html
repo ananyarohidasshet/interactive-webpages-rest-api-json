@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 - Greet User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #greeting {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your Name</h1>
+
+    <!-- Form Section -->
+    <input type="text" id="nameInput" placeholder="Type your name">
+    <button onclick="greetUser()">Submit</button>
+
+    <!-- Greeting Message -->
+    <div id="greeting"></div>
+
+    <script>
+        function greetUser() {
+            const name = document.getElementById("nameInput").value;
+            const greetingDiv = document.getElementById("greeting");
+
+            if (name.trim() !== "") {
+                greetingDiv.textContent = "Hello " + name;
+            } else {
+                greetingDiv.textContent = "Please enter a name!";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 6 - JSON Validator + Reset</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    textarea {
+      width: 300px;
+      height: 150px;
+      font-size: 16px;
+      padding: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JSON Validator</h1>
+
+  <!-- Textarea for JSON Input -->
+  <textarea id="jsonInput" placeholder='Enter JSON here...'></textarea><br>
+
+  <!-- Buttons -->
+  <button onclick="validateJSON()">Submit</button>
+  <button onclick="resetForm()">Reset</button>
+
+  <!-- Result Display -->
+  <div id="result"></div>
+
+  <script>
+    function validateJSON() {
+      const input = document.getElementById("jsonInput").value;
+      const resultDiv = document.getElementById("result");
+
+      try {
+        JSON.parse(input); // ✅ Checks if it's valid JSON
+        resultDiv.textContent = "✅ Valid JSON";
+        resultDiv.style.color = "green";
+      } catch (e) {
+        resultDiv.textContent = "❌ Invalid JSON";
+        resultDiv.style.color = "red";
+      }
+    }
+
+    function resetForm() {
+      document.getElementById("jsonInput").value = "";   // ✅ clear textarea
+      document.getElementById("result").textContent = ""; // ✅ clear result
+    }
+  </script>
+</body>
+</html>
+

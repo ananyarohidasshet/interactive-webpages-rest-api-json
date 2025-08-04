@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4 - REST API Greet + Reset</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #greeting {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Your Name</h1>
+
+    <input type="text" id="nameInput" placeholder="Type your name">
+    <button onclick="sendName()">Submit</button>
+    <button onclick="resetForm()">Reset</button>
+
+    <div id="greeting"></div>
+
+    <script>
+        function sendName() {
+            const name = document.getElementById("nameInput").value;
+
+            fetch("http://localhost:3000/greet", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name: name })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("greeting").textContent = data.message;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function resetForm() {
+            document.getElementById("nameInput").value = "";    // ✅ clears input box
+            document.getElementById("greeting").textContent = ""; // ✅ clears message
+        }
+    </script>
+</body>
+</html>
